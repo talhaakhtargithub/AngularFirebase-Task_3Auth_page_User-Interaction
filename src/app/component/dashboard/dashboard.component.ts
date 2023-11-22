@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/model/product';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { WalletService } from 'src/app/shared/wallet.service'; // Import the WalletService
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   productList: Product[] = [];
   productObj: Product = {
@@ -20,20 +21,30 @@ export class DashboardComponent implements OnInit {
     email: '',
     price: 0
   };
-
-  alertMessage!: string;
+  private productSubscription!: Subscription;
 
   constructor(
     private auth: AuthService,
     private data: DataService,
     private route: ActivatedRoute,
     private router: Router,
-    private db: AngularFireDatabase // Inject AngularFireDatabase
+    private walletService: WalletService // Inject the WalletService
   ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
-    this.listenForAlerts();
+
+    // Subscribe to real-time product updates
+    this.productSubscription = this.data.productUpdates.subscribe(() => {
+      this.getAllProducts();
+      this.notifyUser('Custom message for notification.');
+
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe from product updates when the component is destroyed
+    this.productSubscription.unsubscribe();
   }
 
   getAllProducts() {
@@ -62,7 +73,6 @@ export class DashboardComponent implements OnInit {
   }
 
   addProduct() {
-    // Check if any required property of productObj is an empty string
     if (
       !this.productObj.product_name ||
       !this.productObj.image_url ||
@@ -73,21 +83,13 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
+    // Add the product without wallet logic
     this.data.addProduct(this.productObj);
-
-    // Notify Firebase about the new product
-    this.db.object('/alerts').set({ message: 'A new product has been added & the table is refreshed' });
-
     this.resetForm();
   }
-
   updateProduct() {
     if (this.productObj.id) {
       this.data.updateProduct(this.productObj);
-
-      // Notify Firebase about the product update
-      this.db.object('/alerts').set({ message: 'A product has been updated & the table is refreshed' });
-
       this.resetForm();
     } else {
       alert('Select a product to update');
@@ -101,25 +103,36 @@ export class DashboardComponent implements OnInit {
   }
 
   onEditProduct(product: Product) {
-    this.productObj = { ...product }; // Copy the properties to the form model
+    this.productObj = { ...product };
   }
 
-  listenForAlerts() {
-    const alertsRef = this.db.object('/alerts');
 
-    // Listen for changes in the /alerts node
-    alertsRef.valueChanges().subscribe((alert: any) => {
-      this.alertMessage = alert.message;
-    });
 
-    // Periodically check for stored alerts on other pages
-    setInterval(() => {
-      // Display the stored alert and clear the session storage
-      const storedAlert = sessionStorage.getItem('storedAlert');
-      if (storedAlert) {
-        this.alertMessage = storedAlert;
-        sessionStorage.removeItem('storedAlert');
-      }
-    }, 1000); // Adjust the interval as needed
+
+
+
+  addToCart(product: Product) {
+    const productPrice = product.price;
+
+    // Check if the user has sufficient funds in the wallet
+    if (this.walletService.makePurchase(productPrice)) {
+      // Deduct the amount from the wallet and add the product to the cart
+      this.data.addToCart(product);
+      this.notifyUser('Product added to cart successfully.');
+    } else {
+      alert('Insufficient funds in the wallet');
+    }
   }
+
+
+  // ... (remaining code)
+  notifyUser(message: string) {
+    const isDashboardPage = this.router.url === '/dashboard';
+    const notificationMessage = isDashboardPage
+      ? message + ' The table is refreshed.'
+      : message + ' Kindly check the dashboard page.';
+    alert(notificationMessage);
+  }
+
+
 }

@@ -13,6 +13,8 @@ import { ForgotPasswordComponent } from './component/forgot-password/forgot-pass
 import { VarifyEmailComponent } from './component/varify-email/varify-email.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { RouterModule, Routes } from '@angular/router';
+import { WalletComponent } from './component/dashboard/wallet/wallet.component';
+import { CartComponent } from './component/dashboard/cart/cart.component';
 
 
 
@@ -33,6 +35,8 @@ const routes: Routes = [
     DashboardComponent,
     ForgotPasswordComponent,
     VarifyEmailComponent,
+    WalletComponent,
+    CartComponent
 
   ],
   imports: [

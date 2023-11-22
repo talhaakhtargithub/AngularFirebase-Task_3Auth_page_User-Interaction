@@ -2,3 +2,119 @@ img{
   max-width:250px;
   max-height: 300px;
 }
+
+
+
+/* General Styles */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif; /* Set a default font family for the body */
+}
+
+/* Add Product Form Styles */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.form-floating {
+  position: relative;
+}
+
+.btn-outline-success,
+.btn-outline-primary {
+  width: 100%; /* Make buttons full width for better mobile experience */
+  margin-top: 10px;
+}
+
+/* Product List Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Collapse borders between table cells */
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+   /* Header background color */
+  color: black; /* Header text color */
+  background-color: #f8f9fa;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa; /* Alternate row background color */
+}
+
+/* Additional Components Styles */
+.app-cart, .app-wallet {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+  .col-md-4,
+  .col-md-8 {
+    margin-top: 20px;
+  }
+
+  .btn-outline-success,
+  .btn-outline-primary {
+    width: auto; /* Reset button width on small screens */
+  }
+
+  .app-cart, .app-wallet {
+    margin-top: 10px; /* Adjust margin for better spacing on small screens */
+  }
+}
+
+
+
+
+/* General Styles */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Container Styles */
+.container-fluid {
+  margin-top: 20px; /* Add margin at the top for better spacing */
+}
+
+/* Column Styles */
+.col-8 {
+  padding: 0 15px; /* Add padding to the column for better spacing */
+}
+
+.col-md-4 {
+  margin-top: 20px;
+}
+
+/* Additional Components Styles */
+.app-cart,
+.app-wallet {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+  .col-md-4 {
+    margin-top: 10px; /* Adjust margin for better spacing on small screens */
+  }
+
+  .app-cart,
+  .app-wallet {
+    margin-top: 10px; /* Adjust margin for better spacing on small screens */
+  }
+}
+
+
+
