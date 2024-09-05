@@ -1,2 +1,12 @@
-<!-- Example: app.component.html -->
-<router-outlet></router-outlet>
+<div [class.hidden-sidebar]="!isSidebarVisible">
+  <app-sidenav
+    (onToggleSideNav)="onToggleSideNav($event)">
+  </app-sidenav>
+</div>
+<div id="main-content" [class.full-width]="!isSidebarVisible" style="background-color: #f4f7fa">
+  <app-body
+    [collapsed]="isSideNavCollapsed"
+    [screenWidth]="screenWidth">
+  </app-body>
+  <router-outlet></router-outlet>
+</div>
