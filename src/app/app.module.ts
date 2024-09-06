@@ -24,7 +24,10 @@ import { FavoriteComponent } from './favorite/favorite.component';
 import { TeacherComponent } from './products/teacher/teacher.component';
 import { StudentComponent } from './products/student/student.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -66,7 +69,11 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatOptionModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
