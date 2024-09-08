@@ -1,0 +1,51 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    select, button {
+      margin: 0 10px;
+    }
+
+    button {
+      padding: 5px 10px;
+      background-color: #42A5F5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #1E88E5;
+      }
+    }
+  }
+
+  .stats-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .card {
+      flex: 1 1 calc(50% - 20px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 5px;
+      padding: 20px;
+      background: #fff;
+
+      .chart-container {
+        height: 300px;
+        width: 100%;
+      }
+
+      h3 {
+        margin-bottom: 15px;
+      }
+    }
+  }
+}
