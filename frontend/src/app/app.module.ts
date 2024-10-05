@@ -34,6 +34,7 @@ import { TeacherComponent } from './products/teacher/teacher.component';
 import { StudentComponent } from './products/student/student.component';
 import { StudentAttendanceComponent } from './dashboard/student-attendance/student-attendance.component';
 import { TeacherAttendanceComponent } from './dashboard/teacher-attendance/teacher-attendance.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -65,6 +66,10 @@ const routes: Routes = [
     StudentAttendanceComponent,
     TeacherAttendanceComponent,
 
+
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -81,6 +86,8 @@ const routes: Routes = [
     MatButtonModule,
     MatOptionModule,
     MatFormFieldModule,
+    NgChartsModule,
+    NgxPaginationModule,
 
   ],
   providers: [],

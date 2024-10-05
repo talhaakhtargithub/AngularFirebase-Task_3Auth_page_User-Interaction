@@ -6,6 +6,8 @@
     <select [(ngModel)]="selectedCourse">
       <option *ngFor="let course of courses" [value]="course.code">{{ course.title }}</option>
     </select>
+
+
     <select [(ngModel)]="selectedTime">
       <option value="week">Week</option>
       <option value="month">Month</option>

@@ -39,7 +39,15 @@ const routes: Routes = [
     ]
   },
 
-  { path: 'statistics', component: StatisticsComponent },
+  {
+    path: 'statistics',
+    component: StatisticsComponent,
+    children: [
+      { path: '', redirectTo: 'student-table', pathMatch: 'full' },
+
+    ]
+  },
+
   { path: 'favorite', component: FavoriteComponent },
   { path: 'pages', component: PagesComponent },
   { path: 'media', component: MediaComponent },
@@ -48,7 +56,6 @@ const routes: Routes = [
   // Wildcard route for a 404 page (optional)
   { path: '**', redirectTo: 'login' }
 ];
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

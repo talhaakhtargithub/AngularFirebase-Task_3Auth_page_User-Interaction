@@ -24,7 +24,19 @@ export const navbarData = [
   {
     routeLink: 'statistics',
     icon: 'fal fa-chart-bar',
-    label: 'Report'
+    label: 'Tables',
+    children: [
+      {
+        routeLink: 'student-table',
+        icon: 'fal fa-user-graduate',
+        label: 'Student Table'
+      },
+      {
+        routeLink: 'teacher-table',
+        icon: 'fal fa-chalkboard-teacher',
+        label: 'Teacher Table'
+      }
+    ]
   },
   {
     routeLink: 'favorite',

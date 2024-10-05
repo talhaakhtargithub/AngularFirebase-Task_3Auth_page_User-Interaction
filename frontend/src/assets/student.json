@@ -2,7 +2,7 @@
   {
     "name": "Eve Davis",
     "id": "ST001",
-    "semester": "Semester_I",
+    "semester": "",
     "course": {
       "code": "CS1101",
       "title": "Applications of Information & Communication Technologies"
@@ -17,7 +17,7 @@
   {
     "name": "Alice Johnson",
     "id": "ST002",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1102",
       "title": "Data Structures and Algorithms"
@@ -32,7 +32,7 @@
   {
     "name": "Bob Smith",
     "id": "ST003",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1103",
       "title": "Database Management Systems"
@@ -47,7 +47,7 @@
   {
     "name": "Carol Wilson",
     "id": "ST004",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1104",
       "title": "Computer Networks"
@@ -62,7 +62,7 @@
   {
     "name": "David Lee",
     "id": "ST005",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1105",
       "title": "Software Engineering"
@@ -77,7 +77,7 @@
   {
     "name": "Eva Green",
     "id": "ST006",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1106",
       "title": "Operating Systems"
@@ -92,7 +92,7 @@
   {
     "name": "Frank Brown",
     "id": "ST007",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1107",
       "title": "Web Technologies"
@@ -107,7 +107,7 @@
   {
     "name": "Grace Adams",
     "id": "ST008",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1108",
       "title": "Computer Graphics"
@@ -122,7 +122,7 @@
   {
     "name": "Hannah Clark",
     "id": "ST009",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1109",
       "title": "Artificial Intelligence"
@@ -137,7 +137,7 @@
   {
     "name": "Ivy Lewis",
     "id": "ST010",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1110",
       "title": "Machine Learning"
@@ -152,7 +152,7 @@
   {
     "name": "Jack Taylor",
     "id": "ST011",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1111",
       "title": "Network Security"
@@ -167,7 +167,7 @@
   {
     "name": "Karen Lewis",
     "id": "ST012",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1112",
       "title": "Human-Computer Interaction"
@@ -182,7 +182,7 @@
   {
     "name": "Louis Walker",
     "id": "ST013",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1113",
       "title": "Digital Image Processing"
@@ -197,7 +197,7 @@
   {
     "name": "Mia Anderson",
     "id": "ST014",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1114",
       "title": "Cloud Computing"
@@ -212,7 +212,7 @@
   {
     "name": "Nina Robinson",
     "id": "ST015",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1115",
       "title": "Big Data Analytics"
@@ -227,7 +227,7 @@
   {
     "name": "Oliver Harris",
     "id": "ST016",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1116",
       "title": "Natural Language Processing"
@@ -242,7 +242,7 @@
   {
     "name": "Paula Walker",
     "id": "ST017",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1117",
       "title": "Information Retrieval"
@@ -257,7 +257,7 @@
   {
     "name": "Quincy Evans",
     "id": "ST018",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1118",
       "title": "Embedded Systems"
@@ -272,7 +272,7 @@
   {
     "name": "Rachel Miller",
     "id": "ST019",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1119",
       "title": "Cybersecurity"
@@ -287,7 +287,7 @@
   {
     "name": "Steve Wilson",
     "id": "ST020",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1120",
       "title": "Game Development"
@@ -302,7 +302,7 @@
   {
     "name": "Tina Harris",
     "id": "ST021",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1121",
       "title": "Human-Robot Interaction"
@@ -317,7 +317,7 @@
   {
     "name": "Ursula Thompson",
     "id": "ST022",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1122",
       "title": "Computational Biology"
@@ -332,7 +332,7 @@
   {
     "name": "Victor Martinez",
     "id": "ST023",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1123",
       "title": "Virtual Reality"
@@ -347,7 +347,7 @@
   {
     "name": "Wendy King",
     "id": "ST024",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1124",
       "title": "Quantum Computing"
@@ -362,7 +362,7 @@
   {
     "name": "Xander Lee",
     "id": "ST025",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1125",
       "title": "Augmented Reality"
@@ -377,7 +377,7 @@
   {
     "name": "Yvonne Davis",
     "id": "ST026",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1126",
       "title": "Distributed Systems"
@@ -392,7 +392,7 @@
   {
     "name": "Zachary Robinson",
     "id": "ST027",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1127",
       "title": "Advanced Algorithms"
@@ -407,7 +407,7 @@
   {
     "name": "Amelia Evans",
     "id": "ST028",
-    "semester": "Semester_I",
+    "semester": "2020-2024",
     "course": {
       "code": "CS1128",
       "title": "Internet of Things"
@@ -422,7 +422,7 @@
   {
     "name": "Benjamin Adams",
     "id": "ST029",
-    "semester": "Semester_II",
+    "semester": "2021-2025",
     "course": {
       "code": "CS1129",
       "title": "Bioinformatics"

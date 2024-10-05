@@ -8,7 +8,8 @@ interface AttendanceRecord {
 }
 
 interface Student {
-  name: string;
+  firstName: string; // Assuming firstName is now included
+  lastName: string;  // Assuming lastName is now included
   id: string;
   semester: string;
   course: {
@@ -28,8 +29,8 @@ interface Course {
   providedIn: 'root'
 })
 export class StudentService {
-  private studentsUrl = 'assets/student.json';
-  private coursesUrl = 'assets/courses.json';
+  private studentsUrl = 'assets/student.json'; // Replace with your actual API endpoint if needed
+  private coursesUrl = 'assets/courses.json'; // Replace with your actual API endpoint if needed
 
   constructor(private http: HttpClient) { }
 
