@@ -15,7 +15,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { StudentService } from '../app/services/student.service'; // Ensure correct path
-
+import { ToastrModule } from 'ngx-toastr';
+import { SocketIoModule } from 'ngx-socket-io';
 // Components
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
@@ -88,6 +89,13 @@ const routes: Routes = [
     MatFormFieldModule,
     NgChartsModule,
     NgxPaginationModule,
+    ToastrModule.forRoot({positionClass: 'toast-top-right', // Position the toast
+      timeOut: 3000, // Duration for which the toast is displayed
+      preventDuplicates: true, // Prevent duplicate messages
+      closeButton: true, // Show close button
+      progressBar: true, // Show progress bar
+      }),
+      SocketIoModule.forRoot({ url: 'http://localhost:3000', options: {} }),
 
   ],
   providers: [],

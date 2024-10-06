@@ -1,5 +1,6 @@
-// controllers/studentController.js
 const Student = require('../models/Student');
+const fs = require('fs');
+const path = require('path');
 
 // Get all students
 exports.getAllStudents = async (req, res) => {
@@ -23,7 +24,7 @@ exports.getStudentById = async (req, res) => {
 };
 
 // Create a new student
-exports.createStudent = async (req, res) => {
+exports.createStudent = async (req, res, io) => {
     const { firstName, lastName, semester, identificationNumber, dateOfBirth, dateOfAdmission, degreeTitle, yearOfStudy } = req.body;
     const uploadPicture = req.file ? req.file.filename : null;
 
@@ -41,6 +42,7 @@ exports.createStudent = async (req, res) => {
 
     try {
         await newStudent.save();
+        io.emit('studentCreated', newStudent); // Emit event when a new student is created
         res.status(201).json(newStudent);
     } catch (err) {
         res.status(500).json({ message: 'Error adding student' });
@@ -48,7 +50,7 @@ exports.createStudent = async (req, res) => {
 };
 
 // Update a student
-exports.updateStudent = async (req, res) => {
+exports.updateStudent = async (req, res, io) => {
     const { firstName, lastName, semester, dateOfBirth, dateOfAdmission, degreeTitle, yearOfStudy } = req.body;
     const uploadPicture = req.file ? req.file.filename : null;
 
@@ -60,6 +62,8 @@ exports.updateStudent = async (req, res) => {
         );
 
         if (!updatedStudent) return res.status(404).json({ message: 'Student not found' });
+        
+        io.emit('studentUpdated', updatedStudent); // Emit event when a student is updated
         res.json(updatedStudent);
     } catch (err) {
         res.status(500).json({ message: 'Error updating student' });
@@ -67,11 +71,34 @@ exports.updateStudent = async (req, res) => {
 };
 
 // Delete a student
-exports.deleteStudent = async (req, res) => {
+exports.deleteStudent = async (req, res, io) => {
     try {
+        // Find the student to delete
+        const studentToDelete = await Student.findOne({ identificationNumber: req.params.id });
+        if (!studentToDelete) return res.status(404).json({ message: 'Student not found' });
+        
+        // Delete the student's picture if it exists
+        if (studentToDelete.uploadPicture) {
+            const picturePath = path.join(__dirname, '../uploads', studentToDelete.uploadPicture);
+            fs.unlink(picturePath, err => {
+                if (err) {
+                    console.error(`Failed to delete picture for student ${req.params.id}:`, err);
+                } else {
+                    console.log(`Deleted picture for student ${req.params.id}`);
+                }
+            });
+        }
+
+        // Delete the student record
         const result = await Student.deleteOne({ identificationNumber: req.params.id });
-        if (result.deletedCount === 0) return res.status(404).json({ message: 'Student not found' });
+        io.emit('studentDeleted', req.params.id); // Emit event when a student is deleted
         res.status(204).end(); // No content
+        
+        // Check if there are no students left and delete all pictures
+        const studentCount = await Student.countDocuments();
+        if (studentCount === 0) {
+            await deleteAllPictures();
+        }
     } catch (err) {
         res.status(500).json({ message: 'Error deleting student' });
     }
@@ -86,4 +113,27 @@ exports.checkIdentificationNumberExists = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: 'Error checking identification number' });
     }
+};
+
+// Function to delete all student pictures
+const deleteAllPictures = async () => {
+    const picturesDir = path.join(__dirname, '../uploads'); // Update this path as needed
+
+    fs.readdir(picturesDir, (err, files) => {
+        if (err) {
+            console.error('Error reading pictures directory:', err);
+            return;
+        }
+
+        // Delete each file in the directory
+        files.forEach(file => {
+            fs.unlink(path.join(picturesDir, file), err => {
+                if (err) {
+                    console.error(`Failed to delete file: ${file}`, err);
+                } else {
+                    console.log(`Deleted file: ${file}`);
+                }
+            });
+        });
+    });
 };

@@ -36,7 +36,7 @@
           <td>{{ student.degreeTitle }}</td>
           <td>
             <div class="d-flex justify-content-center">
-              <button (click)="onDelete(student.identificationNumber)"
+              <button (click)="deleteStudent(student.identificationNumber)"
                       class="btn btn-danger btn-sm"
                       title="Delete">
                 <i class="fas fa-trash"></i>
@@ -58,9 +58,7 @@
             {name: 'firstName', label: 'First Name'},
             {name: 'lastName', label: 'Last Name'},
             {name: 'identificationNumber', label: 'Identification Number'},
-            {name: 'dateOfBirth', label: 'Date of Birth'},
-            {name: 'dateOfAdmission', label: 'Date of Admission'},
-            {name: 'yearOfStudy', label: 'Year of Study'},
+            {name: 'yearOfStudy', label: 'Year of Study'}
           ]">
             <label [for]="field.name">{{ field.label }}</label>
             <input type="text"
@@ -69,6 +67,24 @@
                    class="form-control"
                    placeholder="Enter {{ field.label.toLowerCase() }}" />
             <div *ngIf="studentForm.get(field.name)?.invalid && studentForm.get(field.name)?.touched" class="text-danger">
+              This field is required.
+            </div>
+          </div>
+
+          <!-- Date of Birth Field with Native Date Picker -->
+          <div class="form-group">
+            <label for="dateOfBirth" class="text-success">Date of Birth</label>
+            <input type="date" formControlName="dateOfBirth" id="dateOfBirth" class="form-control" />
+            <div *ngIf="studentForm.get('dateOfBirth')?.invalid && studentForm.get('dateOfBirth')?.touched" class="text-danger">
+              This field is required.
+            </div>
+          </div>
+
+          <!-- Date of Admission Field with Native Date Picker -->
+          <div class="form-group">
+            <label for="dateOfAdmission" class="text-success">Date of Admission</label>
+            <input type="date" formControlName="dateOfAdmission" id="dateOfAdmission" class="form-control" />
+            <div *ngIf="studentForm.get('dateOfAdmission')?.invalid && studentForm.get('dateOfAdmission')?.touched" class="text-danger">
               This field is required.
             </div>
           </div>

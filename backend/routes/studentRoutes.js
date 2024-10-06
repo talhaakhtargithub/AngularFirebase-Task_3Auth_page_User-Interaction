@@ -1,4 +1,3 @@
-// routes/studentRoutes.js
 const express = require('express');
 const multer = require('multer');
 const {
@@ -24,12 +23,17 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage }); // Use the storage configuration
 
-// Routes
-router.post('/', upload.single('uploadPicture'), createStudent);
-router.get('/', getAllStudents);
-router.get('/:id', getStudentById);
-router.put('/:id', upload.single('uploadPicture'), updateStudent);
-router.delete('/:id', deleteStudent);
-router.get('/check/:id', checkIdentificationNumberExists);
+// Middleware to set up Socket.IO
+const setupSocketIO = (io) => {
+    // Routes
+    router.post('/', upload.single('uploadPicture'), (req, res) => createStudent(req, res, io));
+    router.get('/', getAllStudents);
+    router.get('/:id', getStudentById);
+    router.put('/:id', upload.single('uploadPicture'), (req, res) => updateStudent(req, res, io));
+    router.delete('/:id', (req, res) => deleteStudent(req, res, io));
+    router.get('/check/:id', checkIdentificationNumberExists);
 
-module.exports = router;
+    return router;
+};
+
+module.exports = setupSocketIO; // Export function to set up routes with Socket.IO

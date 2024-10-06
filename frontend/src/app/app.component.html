@@ -3,7 +3,7 @@
     (onToggleSideNav)="onToggleSideNav($event)">
   </app-sidenav>
 </div>
-<div id="main-content" [class.full-width]="!isSidebarVisible" style="background-color: #f4f7fa">
+<div id="main-content" [class.full-width]="!isSidebarVisible" >
   <app-body
     [collapsed]="isSideNavCollapsed"
     [screenWidth]="screenWidth">

@@ -1,24 +1,22 @@
 <div class="dashboard">
   <div class="filter-section">
-    <select [(ngModel)]="selectedSession">
+    <select [(ngModel)]="selectedSession" class="filter-select">
       <option *ngFor="let session of ['Semester_I', 'Semester_II']" [value]="session">{{ session }}</option>
     </select>
-    <select [(ngModel)]="selectedCourse">
+    <select [(ngModel)]="selectedCourse" class="filter-select">
       <option *ngFor="let course of courses" [value]="course.code">{{ course.title }}</option>
     </select>
-
-
-    <select [(ngModel)]="selectedTime">
+    <select [(ngModel)]="selectedTime" class="filter-select">
       <option value="week">Week</option>
       <option value="month">Month</option>
       <option value="year">Year</option>
     </select>
-    <button (click)="applyFilter()">Filter</button>
+    <button (click)="applyFilter()" class="filter-button">Filter</button>
   </div>
 
   <div class="stats-section">
     <!-- Student Attendance -->
-    <div class="card">
+    <div class="card student-attendance-card">
       <h3>Student Attendance</h3>
       <div class="chart-container">
         <canvas baseChart
@@ -30,7 +28,7 @@
     </div>
 
     <!-- Teacher Attendance -->
-    <div class="card">
+    <div class="card teacher-attendance-card">
       <h3>Teacher Attendance</h3>
       <div class="chart-container">
         <canvas baseChart
@@ -41,7 +39,7 @@
     </div>
 
     <!-- Course Assessment -->
-    <div class="card">
+    <div class="card course-assessment-card">
       <h3>Course Assessment</h3>
       <div class="chart-container">
         <canvas baseChart
@@ -52,7 +50,7 @@
     </div>
 
     <!-- Emotion Assessment -->
-    <div class="card">
+    <div class="card emotion-assessment-card">
       <h3>Emotion Assessment</h3>
       <div class="chart-container">
         <canvas baseChart
@@ -60,10 +58,11 @@
           [type]="emotionChartType">
         </canvas>
       </div>
+
     </div>
 
-    <!-- Student Assessment Table -->
-    <div class="card">
+    <!-- Individual Student Assessment -->
+    <div class="card individual-assessment-card">
       <h3>Individual Student Assessment</h3>
       <table>
         <thead>
@@ -79,7 +78,7 @@
             <td>{{ student.name }}</td>
             <td>{{ student.id }}</td>
             <td>{{ student.semester }}</td>
-            <td>{{ student.attendance }}%</td>
+            <td>{{ student.attendance }}</td>
           </tr>
         </tbody>
       </table>

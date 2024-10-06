@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr'; // Import ToastrService
 
 interface Teacher {
   firstName: string;
@@ -32,7 +33,11 @@ export class TeacherComponent implements OnInit {
   ];
   isShowPage: boolean = false;
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private toastr: ToastrService // Inject ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -63,18 +68,20 @@ export class TeacherComponent implements OnInit {
         },
         (error: any) => {
           console.error('Error fetching teachers:', error);
+          this.toastr.error('Failed to load teachers. Please try again later.'); // Show error toast
         }
       );
   }
 
   loadCourses(): void {
-    this.http.get<Course[]>('assets/courses.json')
+    this.http.get<Course[]>('http://localhost:3000/api/courses')
       .subscribe(
         (data: Course[]) => {
           this.courses = data;
         },
         (error: any) => {
           console.error('Error fetching courses:', error);
+          this.toastr.error('Failed to load courses. Please try again later.'); // Show error toast
         }
       );
   }
@@ -89,13 +96,16 @@ export class TeacherComponent implements OnInit {
             this.loadTeachers(); // Reload teachers after adding
             this.resetForm();
             this.isShowPage = false; // Hide the form after submission
+            this.toastr.success('Teacher added successfully!'); // Show success toast
           },
           error: (error) => {
             console.error('Error adding teacher:', error);
+            this.toastr.error('Failed to add teacher. Please try again later.'); // Show error toast
           }
         });
     } else {
       console.warn('Form is invalid', this.teacherForm.errors);
+      this.toastr.warning('Please fill in all required fields.'); // Show warning toast
     }
   }
 
@@ -138,9 +148,11 @@ export class TeacherComponent implements OnInit {
           next: () => {
             console.log('Teacher deleted successfully');
             this.loadTeachers(); // Reload teachers after deletion
+            this.toastr.success('Teacher deleted successfully!'); // Show success toast
           },
           error: (error) => {
             console.error('Error deleting teacher:', error);
+            this.toastr.error('Failed to delete teacher. Please try again later.'); // Show error toast
           }
         });
     }
